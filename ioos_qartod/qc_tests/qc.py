@@ -141,8 +141,8 @@ def spike_check(arr, low_thresh, high_thresh, prev_qc=None):
     """
     # Subtract the average from point at index n-1 and get the absolute value.
     if low_thresh >= high_thresh:
-        raise ValueError("Low theshold value must be less than high threshold "
-                         "value.")
+        raise ValueError("Low threshold value must be less than high threshold"
+                         " value.")
     val = np.abs(np.convolve(arr, [-0.5, 1, -0.5], mode='same'))
     # First and last elements can't contain three points,
     # so set difference to zero so these will avoid getting spike flagged.
@@ -224,7 +224,8 @@ def flat_line_check(arr, low_reps, high_reps, eps, prev_qc=None):
 
 
 @add_qartod_ident(16, 'Time Series Flat Line Test')
-def time_series_flat_line_check(arr, low_reps=3, high_reps=5, eps=None, prev_qc=None):
+def time_series_flat_line_check(arr, low_reps=3, high_reps=5, eps=None,
+                                prev_qc=None):
     """
     Check for invariate observations and can be applied to all bulk wave
     parameters.
@@ -293,7 +294,7 @@ def qc_compare(vectors):
     result = np.ones_like(vectors[0]) * QCFlags.MISSING
     priorities = [QCFlags.MISSING, QCFlags.UNKNOWN, QCFlags.GOOD_DATA,
                   QCFlags.SUSPECT, QCFlags.BAD_DATA]
-    # For each of the priorities in order, set the resultant array to the the
+    # For each of the priorities in order, set the resultant array to the
     # flag where that flag exists in each of the vectors.
     for p in priorities:
         for v in vectors:
