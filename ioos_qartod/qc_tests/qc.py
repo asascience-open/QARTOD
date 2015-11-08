@@ -93,6 +93,16 @@ def range_check(arr, sensor_span, user_span=None):
     return flag_arr
 
 
+@add_qartod_ident(10, 'Current Speed')
+def current_speed_check(arr, max_curr=250):
+    """
+    Checks if current speed is positive and for unrealistic high current speed.
+
+    """
+    flag_arr = range_check(arr, sensor_span=(0, max_curr), user_span=None)
+    return flag_arr
+
+
 def _process_time_chunk(value_pairs):
     """Takes values and thresholds for climatologies
        and returns whether passing or not, or returns UNKNOWN

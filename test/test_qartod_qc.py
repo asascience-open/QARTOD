@@ -39,6 +39,13 @@ class QartodQcTest(unittest.TestCase):
         npt.assert_array_equal(qc.range_check(vals, sensor_span, user_span),
                                np.array([4, 3, 3, 1, 1, 1, 1, 1, 3, 4]))
 
+    def test_current_speed_check(self):
+        """Checks if current speed is positive and below a max threshold."""
+        vals = np.array([5, 10, -15, 20, 25, 300, 35, 250., 45, 51])
+        npt.assert_array_equal(qc.current_speed_check(vals, max_curr=250),
+                               np.array([1, 1, 4, 1, 1, 4, 1, 1, 1, 1]))
+
+
     def test_climatology_check(self):
         # 14 vals - 2010-01-03 to 2010-04-04,
         dates = pd.date_range('2010-01-01', '2010-04-10', freq='W')
